@@ -23,7 +23,8 @@
   },
   "homepage": "https://github.com/babaquero07/kuepa-challenge\u001b[#readme",
   "dependencies": {
-    "@prisma/client": "^5.9.1"
+    "@prisma/client": "^5.9.1",
+    "bcryptjs": "^2.4.3"
   },
   "devDependencies": {
     "prisma": "^5.9.1"
