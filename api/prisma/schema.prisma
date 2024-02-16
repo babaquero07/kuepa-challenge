@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  student
+  admin
+}
+
+model User {
+  id       String @id @default(uuid())
+  name     String
+  user     String @unique
+  password String
+  role     Role   @default(student)
+
+  // Relations
+  LessonMember LessonMember[]
+  Messages     Message[]
+}
+
+model Lesson {
+  id          String @id @default(uuid())
+  title       String
+  description String
+
+  // Relations
+  Chat         Chat?
+  LessonMember LessonMember[]
+}
+
+model Chat {
+  id String @id @default(uuid())
+
+  // Relations
+  lessonId String    @unique
+  lesson   Lesson    @relation(fields: [lessonId], references: [id])
+  Messages Message[]
+}
+
+model LessonMember {
+  id String @id @default(uuid())
+
+  // Relations
+  userId String
+  User   User   @relation(fields: [userId], references: [id])
+
+  lessonId String
+  Lesson   Lesson @relation(fields: [lessonId], references: [id])
+
+  @@unique([userId, lessonId])
+}
+
+model Message {
+  id       String   @id @default(uuid())
+  content  String
+  dateSent DateTime @default(now())
+
+  // Relations
+  chatId String
+  chat   Chat   @relation(fields: [chatId], references: [id])
+
+  userId String
+  User   User   @relation(fields: [userId], references: [id])
+}
