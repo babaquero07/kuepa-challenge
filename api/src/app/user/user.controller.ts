@@ -1,7 +1,9 @@
 import { Request, Response, Router } from "express";
-import { UserService } from "./user.service";
 
-import { validate, signupValidator } from "../../utils/validators";
+import { UserService } from "./user.service";
+import { AuthService } from "../auth/auth.service";
+
+import { signupValidator, validate } from "../../utils/validators";
 
 const userService = new UserService();
 
@@ -20,6 +22,18 @@ userRouter.post(
         return res.status(422).send({ message: "User already exists" });
 
       const newUser = await userService.signUp(name, user, password);
+
+      // Clear Cookie
+      AuthService.clearCookie(res);
+
+      // Create token and send it as a cookie
+      AuthService.createAndSendToken(
+        res,
+        newUser.id,
+        newUser.user,
+        newUser.role,
+        "7d"
+      );
 
       return res
         .status(201)
