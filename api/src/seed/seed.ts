@@ -6,19 +6,19 @@ export const initialData = {
       name: "Alexander Baquero",
       user: "babaquero07",
       role: "admin",
-      password: bcrypt.hashSync("@Alexander-123"),
+      password: bcryptjs.hashSync("@Alexander-123"),
     },
     {
       name: "Juan Perez",
       user: "jperez",
       role: "user",
-      password: bcrypt.hashSync("@Juan-123"),
+      password: bcryptjs.hashSync("@Juan-123"),
     },
     {
       name: "Maria Rodriguez",
       user: "mrodriguez",
       role: "user",
-      password: bcrypt.hashSync("@Maria-123"),
+      password: bcryptjs.hashSync("@Maria-123"),
     },
   ],
   lesson: {
