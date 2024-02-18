@@ -123,4 +123,35 @@ userRouter.get("/logout", verifyToken, async (req: Request, res: Response) => {
   }
 });
 
+userRouter.get(
+  "/auth-status",
+  verifyToken,
+  async (req: Request, res: Response) => {
+    try {
+      // user token check
+      const user = await userService.getUserById(res.locals.jwtData.id);
+
+      if (!user) {
+        return res
+          .status(404)
+          .send({ message: "User not registered OR Token malfunctioned" });
+      } else if (user.id !== res.locals.jwtData.id) {
+        return res.status(401).send("Permissions didn't match");
+      }
+
+      return res
+        .status(200)
+        .send({
+          message: "ok",
+          name: user.name,
+          user: user.user,
+          role: user.role,
+        });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ message: "ERROR", cause: error.message });
+    }
+  }
+);
+
 export default userRouter;
