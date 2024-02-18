@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import clsx from "clsx";
-
 import { Link } from "react-router-dom";
+
+import clsx from "clsx";
+import toast from "react-hot-toast";
+
+import { useAuth } from "../../../../context/AuthContext";
 
 type FormInputs = {
   name: string;
@@ -11,6 +14,8 @@ type FormInputs = {
 };
 
 const RegisterForm = () => {
+  const auth = useAuth();
+
   const [errorMessage, setErrorMessage] = useState("");
 
   const {
@@ -24,7 +29,20 @@ const RegisterForm = () => {
 
     const { name, user, password } = data;
 
-    console.log("Name:", name, "User:", user, "Password:", password);
+    try {
+      toast.loading("Creating account...", { id: "signup" });
+
+      await auth?.signUp(name, user, password);
+
+      toast.success("Account created!", {
+        id: "signup",
+      });
+    } catch (error) {
+      console.log(error);
+
+      setErrorMessage("Error creating account");
+      toast.error("Signin up failed", { id: "signup" });
+    }
   };
 
   return (
