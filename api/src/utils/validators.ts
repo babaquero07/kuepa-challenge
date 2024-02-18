@@ -40,3 +40,7 @@ export const newLessonValidator = [
   body("title").notEmpty().withMessage("Title is required").trim(),
   body("description").notEmpty().withMessage("Description is required").trim(),
 ];
+
+export const newChatValidator = [
+  body("lessonId").notEmpty().withMessage("Lesson ID is required").trim(),
+];

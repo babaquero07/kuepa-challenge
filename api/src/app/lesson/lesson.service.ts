@@ -1,5 +1,4 @@
 import prisma from "../../lib/prisma";
-
 export class LessonService {
   async newLesson(title: string, description: string) {
     try {
@@ -8,11 +7,14 @@ export class LessonService {
           title,
           description,
         },
-        select: {
-          id: true,
-          title: true,
-          description: true,
-        },
+        // include: {
+        //   Chat: {
+        //     select: {
+        //       id: true,
+        //       lessonId: true,
+        //     },
+        //   },
+        // }
       });
 
       return newLesson;
