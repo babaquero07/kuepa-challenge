@@ -81,7 +81,7 @@ const LoginForm = () => {
         <div className="flex-1 border-t border-gray-500"></div>
       </div>
 
-      <Link to="/new-account" className="btn-secondary text-center">
+      <Link to="/new-account" className="btn-primary text-center">
         Sign up
       </Link>
     </form>

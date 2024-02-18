@@ -94,7 +94,7 @@ const RegisterForm = () => {
         <div className="flex-1 border-t border-gray-500"></div>
       </div>
 
-      <Link to="/login" className="btn-secondary text-center">
+      <Link to="/login" className="btn-primary text-center">
         Login
       </Link>
     </form>
