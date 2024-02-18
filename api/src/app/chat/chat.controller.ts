@@ -34,4 +34,28 @@ chatRouter.post(
   }
 );
 
+chatRouter.get(
+  "/:lessonId",
+  verifyToken,
+  async (req: Request, res: Response) => {
+    try {
+      const { lessonId } = req.params;
+
+      const chat = await chatService.getChatByLessonId(lessonId);
+
+      if (!chat) {
+        return res.status(404).send({ ok: false, message: "Chat not found" });
+      }
+
+      return res.status(200).send({ ok: true, chat });
+    } catch (error) {
+      console.log(error);
+
+      return res
+        .status(500)
+        .send({ ok: false, message: "Internal server error" });
+    }
+  }
+);
+
 export default chatRouter;
