@@ -88,8 +88,12 @@ userRouter.post(
 
         return res.status(200).send({
           message: "User logged in",
-          user: existingUser.user,
-          role: existingUser.role,
+          ok: true,
+          user: {
+            name: existingUser.name,
+            user: existingUser.user,
+            role: existingUser.role,
+          },
         });
       }
     } catch (error) {
