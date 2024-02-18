@@ -139,14 +139,14 @@ userRouter.get(
         return res.status(401).send("Permissions didn't match");
       }
 
-      return res
-        .status(200)
-        .send({
-          message: "ok",
+      return res.status(200).send({
+        message: "ok",
+        user: {
           name: user.name,
           user: user.user,
           role: user.role,
-        });
+        },
+      });
     } catch (error) {
       console.log(error);
       return res.status(500).json({ message: "ERROR", cause: error.message });
