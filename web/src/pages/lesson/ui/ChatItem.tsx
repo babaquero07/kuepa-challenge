@@ -2,7 +2,7 @@ import { TbClockHour4 } from "react-icons/tb";
 
 const ChatItem = ({ message }) => {
   return (
-    <div className="w-[300px] bg-white rounded gap-2 p-4">
+    <div className="w-[80%] max-w-[300px] bg-white rounded gap-2 p-4">
       <h2 className="text-sm font-semibold">
         {message.User.name} - {message.User.role}
       </h2>

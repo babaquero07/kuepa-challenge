@@ -1,7 +1,7 @@
 const YouTubeVideo = () => {
   return (
     <iframe
-      width="560"
+      width="auto"
       height="315"
       src="https://www.youtube.com/embed/ioaZj5whXRc?si=maWV0Sfv8wUOBVca"
       title="YouTube video player"
