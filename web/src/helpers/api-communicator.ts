@@ -40,3 +40,13 @@ export const checkAuthStatus = async () => {
 
   return res.data;
 };
+
+export const getLessonById = async (id: string) => {
+  const res = await axios.get(`/lesson/${id}`);
+
+  if (res.status !== 200) {
+    throw new Error("Error getting lesson");
+  }
+
+  return res.data;
+};
