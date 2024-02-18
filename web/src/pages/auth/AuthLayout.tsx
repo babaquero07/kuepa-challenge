@@ -9,8 +9,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     if (auth?.isLoggedIn) {
-      console.log(auth);
-      // return navigate("/lesson/1");
+      return navigate("/lesson/918c32df-5f73-4239-814e-03e4bec6cf22");
     }
   }, [auth]);
 

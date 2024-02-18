@@ -1,5 +1,8 @@
 import { Routes, Route } from "react-router-dom";
+import LessonLayout from "./pages/lesson/LessonLayout";
 import AuthLayout from "./pages/auth/AuthLayout";
+
+import LessonPage from "./pages/lesson/LessonPage";
 import NewAccountPage from "./pages/auth/new-account/NewAccountPage";
 import LoginPage from "./pages/auth/login/LoginPage";
 
@@ -21,6 +24,14 @@ function App() {
             <AuthLayout>
               <LoginPage />
             </AuthLayout>
+          }
+        />
+        <Route
+          path="/lesson/:lessonId"
+          element={
+            <LessonLayout>
+              <LessonPage />
+            </LessonLayout>
           }
         />
       </Routes>
