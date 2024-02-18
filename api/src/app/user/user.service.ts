@@ -12,6 +12,28 @@ export class UserService {
     return userSearch ?? false;
   }
 
+  async getUserById(id: string) {
+    try {
+      const user = await prisma.user.findUnique({
+        where: {
+          id,
+        },
+        select: {
+          id: true,
+          name: true,
+          user: true,
+          role: true,
+        },
+      });
+
+      return user;
+    } catch (error) {
+      console.log(error);
+
+      throw new Error("Error getting user by id");
+    }
+  }
+
   async signUp(name: string, user: string, password: string) {
     try {
       const newUser = await prisma.user.create({
@@ -34,5 +56,9 @@ export class UserService {
 
       throw new Error("Error creating an user");
     }
+  }
+
+  isPasswordValid(password: string, userPassword: string) {
+    return bcryptjs.compareSync(password, userPassword);
   }
 }
