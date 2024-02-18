@@ -7,14 +7,6 @@ export class LessonService {
           title,
           description,
         },
-        // include: {
-        //   Chat: {
-        //     select: {
-        //       id: true,
-        //       lessonId: true,
-        //     },
-        //   },
-        // }
       });
 
       return newLesson;
