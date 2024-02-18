@@ -5,6 +5,7 @@ import AuthLayout from "./pages/auth/AuthLayout";
 import LessonPage from "./pages/lesson/LessonPage";
 import NewAccountPage from "./pages/auth/new-account/NewAccountPage";
 import LoginPage from "./pages/auth/login/LoginPage";
+import Footer from "./components/footer/Footer";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           }
         />
       </Routes>
+      <Footer />
     </>
   );
 }
