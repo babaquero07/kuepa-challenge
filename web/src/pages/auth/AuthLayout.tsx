@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../context/AuthContext";
+import { getAllLessons } from "../../helpers/api-communicator";
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   const auth = useAuth();
@@ -9,7 +10,9 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     if (auth?.isLoggedIn) {
-      return navigate("/lesson/918c32df-5f73-4239-814e-03e4bec6cf22");
+      getAllLessons().then(({ lessons }) => {
+        return navigate(`/lesson/${lessons[0].id}`);
+      });
     }
   }, [auth]);
 

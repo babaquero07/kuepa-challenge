@@ -31,6 +31,23 @@ lessonRouter.post(
   }
 );
 
+lessonRouter.get(
+  "/get-all",
+  verifyToken,
+  async (req: Request, res: Response) => {
+    try {
+      const lessons = await lessonService.getAllLessons();
+
+      return res.status(200).send({ ok: true, lessons });
+    } catch (error) {
+      console.log(error);
+      return res
+        .status(500)
+        .send({ ok: false, message: "Internal server error" });
+    }
+  }
+);
+
 lessonRouter.get("/:id", verifyToken, async (req: Request, res: Response) => {
   try {
     const { id } = req.params;

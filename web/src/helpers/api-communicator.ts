@@ -61,6 +61,16 @@ export const getLessonById = async (id: string) => {
   return res.data;
 };
 
+export const getAllLessons = async () => {
+  const res = await axios.get("/lesson/get-all");
+
+  if (res.status !== 200) {
+    throw new Error("Error getting lessons");
+  }
+
+  return res.data;
+};
+
 export const newMessage = async (chatId: string, content: string) => {
   const res = await axios.post("/message/new-message", {
     chatId,

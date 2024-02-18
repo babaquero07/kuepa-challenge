@@ -60,4 +60,24 @@ export class LessonService {
       throw new Error("Error getting lesson by id");
     }
   }
+
+  async getAllLessons() {
+    try {
+      const lessons = await prisma.lesson.findMany({
+        orderBy: {
+          title: "desc",
+        },
+      });
+
+      if (lessons.length === 0) {
+        throw new Error("No lessons found");
+      }
+
+      return lessons;
+    } catch (error) {
+      console.log(error);
+
+      throw new Error("Error getting all lessons");
+    }
+  }
 }
