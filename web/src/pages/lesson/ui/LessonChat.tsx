@@ -3,7 +3,7 @@ import ChatItem from "./ChatItem";
 import ChatInput from "./ChatInput";
 
 const LessonChat = ({ chat }) => {
-  const [messages, setMessages] = useState(chat.Messages || []);
+  const [messages, setMessages] = useState(chat?.Messages || []);
 
   return (
     <div>
@@ -11,11 +11,13 @@ const LessonChat = ({ chat }) => {
         <h1 className="text-2xl font-semibold">Live chat</h1>
 
         {/* Chat messages */}
-        <div className="flex flex-col items-end gap-4 mt-6">
-          {messages.map((message) => (
-            <ChatItem message={message} key={message.id} />
-          ))}
-        </div>
+        {messages.length > 0 && (
+          <div className="flex flex-col items-end gap-4 mt-6">
+            {messages.map((message) => (
+              <ChatItem message={message} key={message.id} />
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Chat input */}
