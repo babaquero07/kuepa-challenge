@@ -35,3 +35,8 @@ export const signupValidator = [
   body("name").notEmpty().withMessage("Name is required").trim(),
   ...loginValidator,
 ];
+
+export const newLessonValidator = [
+  body("title").notEmpty().withMessage("Title is required").trim(),
+  body("description").notEmpty().withMessage("Description is required").trim(),
+];
