@@ -47,8 +47,9 @@ const RegisterForm = () => {
 
   return (
     <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="text">Name</label>
+      <label htmlFor="name">Name</label>
       <input
+        id="name"
         className={clsx("px-5 py-2 border bg-gray-200 rounded mb-5", {
           "border-red-500": !!errors.name,
         })}
@@ -57,8 +58,9 @@ const RegisterForm = () => {
         {...register("name", { required: true })}
       />
 
-      <label htmlFor="text">User</label>
+      <label htmlFor="user">User</label>
       <input
+        id="user"
         className={clsx("px-5 py-2 border bg-gray-200 rounded mb-5", {
           "border-red-500": !!errors.user,
         })}
@@ -69,6 +71,7 @@ const RegisterForm = () => {
 
       <label htmlFor="password">Password</label>
       <input
+        id="password"
         className={clsx("px-5 py-2 border bg-gray-200 rounded mb-5", {
           "border-red-500": !!errors.password,
         })}
