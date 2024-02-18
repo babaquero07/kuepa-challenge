@@ -50,3 +50,16 @@ export const getLessonById = async (id: string) => {
 
   return res.data;
 };
+
+export const newMessage = async (chatId: string, content: string) => {
+  const res = await axios.post("/message/new-message", {
+    chatId,
+    content,
+  });
+
+  if (res.status !== 201) {
+    throw new Error("Error creating message");
+  }
+
+  return res.data;
+};

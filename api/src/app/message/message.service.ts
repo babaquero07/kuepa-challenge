@@ -9,6 +9,14 @@ export class MessageService {
           chatId,
           content,
         },
+        include: {
+          User: {
+            select: {
+              name: true,
+              role: true,
+            },
+          },
+        },
       });
 
       return newMessage;
