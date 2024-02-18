@@ -31,7 +31,35 @@ export class LessonService {
         where: {
           id,
         },
+        include: {
+          Chat: {
+            select: {
+              id: true,
+              Messages: {
+                orderBy: {
+                  dateSent: "asc",
+                },
+                select: {
+                  id: true,
+                  content: true,
+                  dateSent: true,
+
+                  User: {
+                    select: {
+                      name: true,
+                      role: true,
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
       });
+
+      if (!lesson) {
+        throw new Error("Lesson not found");
+      }
 
       return lesson;
     } catch (error) {
