@@ -7,7 +7,11 @@ const NavBar = () => {
 
   return (
     <>
-      <nav className="w-full flex justify-end p-6">
+      <nav className="w-full flex justify-between items-center p-6">
+        {auth?.user?.name && (
+          <p className="font-bold text-2xl">{`Hi, ${auth?.user.name}. 🖐️`}</p>
+        )}
+
         <button
           onClick={auth?.logout}
           className="btn-secondary p-4 flex justify-center items-center gap-4"

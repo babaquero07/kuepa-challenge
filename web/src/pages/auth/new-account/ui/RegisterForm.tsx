@@ -15,7 +15,6 @@ type FormInputs = {
 
 const RegisterForm = () => {
   const auth = useAuth();
-
   const [errorMessage, setErrorMessage] = useState("");
 
   const {
@@ -37,6 +36,10 @@ const RegisterForm = () => {
       toast.success("Account created!", {
         id: "signup",
       });
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500);
     } catch (error) {
       console.log(error);
 
